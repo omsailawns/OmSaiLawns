@@ -3,11 +3,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-omsai-dev-key'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-omsai-dev-key')
 
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.onrender.com,localhost').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
